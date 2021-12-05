@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Settings</title>
+   <link rel="stylesheet" href="css/style.min.css" type="text/css">
+</head>
+
+<body>
+   <div class="audio">
+   <a href="#" class="audio-user">
+      <p class="audio-user-name">The Weeknd</p>
+      <span class="audio-user-album">Starboy</span>
+   </a>
+   <audio class="audio-play" src="" controls muted></audio>
+</div>
+   <aside class="aside">
+   <a href="./index.html" class="aside-logo">
+      <img src="./img/logo.png">
+   </a>
+   <div class="list">
+      <p class="list-name">NAVIGATION</p>
+      <a href="./index.html" class="list-link">Homepage</a>
+      <a href="./playlist.html" class="list-link">Playlists</a>
+      <a href="./settings.html" class="list-link">Settings</a>
+   </div>
+   <div class="list">
+      <p class="list-name">PLAYLISTS</p>
+      <a href="./userlist.html" class="list-link">Liked songs</a>
+   </div>
+   <div class="list">
+      <p class="list-name">STAY</p>
+      <a href="#" class="list-link">Rampampam<span>3:53</span></a>
+      <a href="#" class="list-link">Nice to meet ya<span>4:53</span></a>
+      <a href="#" class="list-link">Nice to meet ya<span>4:53</span></a>
+   </div>
+</aside>
+   <div class="wrapper">
+      <header class="header">
+   <div class="header-search">
+      <input type="text" class="search" placeholder="Search by name and artist">
+      <img src="./img/search.png" width="30px">
+   </div>
+   <a href="#" class="header-user">
+      <div class="header-user-name">Alex Adams</div>
+      <div class="header-user-status">Free user</div>
+   </a>
+</header>
+      <!-- можно создать одельный файл как header aside audio -->
+      <main>
+         <h1 style="text-transform: uppercase; font-size: 60px;">Settings</h1>
+         <form class="form" action="">
+            <div class="name">
+               <label for="" class="name_someone">Your name</label>
+               <input type="text" placeholder="Alex Adams">
+            </div>
+            <div class="dark">
+               <p>Preffered Theme</p>
+               <div class="switch-button">
+                  <input class="switch-button-checkbox" type="checkbox"></input>
+                  <label class="switch-button-label" for=""><span class="switch-button-label-span">Dark</span></label>
+               </div>
+            </div>
+            <div class="premium">
+               <p>Free or Premium</p>
+               <div class="switch-button_2">
+                  <input class="switch-button-checkbox" type="checkbox"></input>
+                  <label class="switch-button-label" for=""><span class="switch-button-label-span">Free</span></label>
+               </div>
+            </div>
+         </form>
+         <h2 class="sorry">No more settings &#128517;</h2>
+      </main>
+   </div>
+</body>
+
+</html>

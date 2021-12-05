@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Homepage</title>
+   <link rel="stylesheet" href="./css/style.css">
+   <!-- <link rel="stylesheet" href="css/style.min.css" type="text/css"> -->
+</head>
+
+<body>
+   <div class="audio">
+      <figure>
+         <figcaption>
+            <p data-name="name"></p>
+            <p data-author="author"></p>
+         </figcaption>
+         <audio class="treck_audio" controls src="./audio/bad-guy.mp3">
+
+         </audio>
+      </figure>
+   </div>
+   <aside class="aside">
+      <a href="./index.html" class="aside-logo">
+         <img src="./img/logo.png">
+      </a>
+      <div class="list">
+         <p class="list-name">NAVIGATION</p>
+         <a href="./index.html" class="list-link">Homepage</a>
+         <a href="./playlist.html" class="list-link">Playlists</a>
+         <a href="./settings.html" class="list-link">Settings</a>
+      </div>
+
+      <div class="list">
+         <p class="list-name">PLAYLISTS</p>
+         <a href="./userlist.html" class="list-link">Liked songs</a>
+      </div>
+
+      <div class="list">
+         <p class="list-name">STAY</p>
+         <a href="#" class="list-link">Rampampam<span>3:53</span></a>
+         <a href="#" class="list-link">Nice to meet ya<span>4:53</span></a>
+         <a href="#" class="list-link">Nice to meet ya<span>4:53</span></a>
+      </div>
+   </aside>
+   <div class="wrapper">
+      <header class="header">
+         <div class="header-search">
+            <input type="text" class="search" placeholder="Search by name and artist">
+            <img src="./img/search.png" width="30px">
+         </div>
+         <a href="#" class="header-user">
+            <div class="header-user-name">Alex Adams</div>
+            <div class="header-user-status">Free user</div>
+         </a>
+      </header>
+      <!-- можно создать одельный файл как header aside audio -->
+      <main>
+         <div class="info_tracks">
+            <div class="left-side">
+               <p class="name-tracks">Billie Elish</p>
+               <p class="name-track">Bad Guy</p>
+               <p class="time">3:53</p>
+               <div class="right-left">
+                  <img src="./img/arrow-left.svg" alt="left">
+                  <img src="./img/arrow-right.svg" alt="right">
+               </div>
+               <div class="carousel">
+                  <div class="circle"></div>
+                  <div class="circle"></div>
+                  <div class="circle active"></div>
+                  <div class="circle"></div>
+               </div>
+            </div>
+            <div class="right-side">
+               <img src="./img/biilie.jpg" alt="" width="400px" class="album">
+            </div>
+         </div>
+         <div class="main tracks">
+            <div class="left-random">
+               <span class="item">10 random songs</span>
+               <!-- Пример для треков -->
+               <!-- <div class="track">
+                  <div class="num">1</div>
+                  <div class="info"></div>
+                  <div class="img">
+                     <img src="./img/biilie.jpg" width="40px" height="40px" alt="">
+                  </div>
+                  <div class="about">
+                     <div class="name">
+                        <p>Billie Elish</p>
+                        <p>Bad Guy</p>
+                     </div>
+                     <div class="time-menu">
+                        <p class="time">3:53</p>
+                        <img src="./img/more-horizontal.svg" alt="menu" class="three-circle">
+                        <div class="menu">
+                           <p class="toUpper like">Like</p>
+                           <hr>
+                           <p class="toUpper add">Add to playlist</p>
+                           <hr>
+                           <p class="toUpper listen">Listen NOw</p>
+                        </div>
+                     </div>
+                  </div>
+               </div> -->
+            </div>
+            <div class=" mid-liked">
+               <p class="item">10 liked tracks</p>
+               <!-- <div class="track">
+                  <div class="num">1</div>
+                  <div class="info"></div>
+                  <div class="img">
+                     <img src="./img/biilie.jpg" width="40px" height="40px" alt="">
+                  </div>
+                  <div class="about">
+                     <div class="name">
+                        <p>Billie Elish</p>
+                        <p>Bad Guy</p>
+                     </div>
+                     <div class="time-menu">
+                        <p class="time">3:53</p>
+                        <img src="./img/more-horizontal.svg" alt="menu" class="three-circle">
+                        <div class="menu">
+                           <p class="toUpper like">Like</p>
+                           <hr>
+                           <p class="toUpper add">Add to playlist</p>
+                           <hr>
+                           <p class="toUpper listen">Listen NOw</p>
+                        </div>
+                     </div>
+                  </div>
+               </div> -->
+            </div>
+            <div class=" right-listened">
+
+               <p class="item">Recently listned</p>
+               <div class="track">
+                  <div class="num">1</div>
+                  <div class="info"></div>
+                  <div class="img">
+                     <img src="./img/biilie.jpg" width="40px" height="40px" alt="">
+                  </div>
+                  <div class="about">
+                     <div class="name">
+                        <p>Billie Elish</p>
+                        <p>Bad Guy</p>
+                     </div>
+                     <div class="time-menu">
+                        <p class="time">3:53</p>
+                        <img src="./img/more-horizontal.svg" alt="menu" class="three-circle">
+                        <div class="menu">
+                           <p class="toUpper like">Like</p>
+                           <hr>
+                           <p class="toUpper add">Add to playlist</p>
+                           <hr>
+                           <p class="toUpper listen">Listen NOw</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
+   </div>
+   <script src="./js/app.js" type="module"></script>
+   <script src="./js/data.js" type="script/javascript"></script>
+</body>
+
+</html>
