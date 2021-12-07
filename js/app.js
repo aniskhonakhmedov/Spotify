@@ -10,12 +10,12 @@ let activeButton = document.querySelector(".menu.active");
 let liked_for_local = localStorage.liked.split('') || []
 let forAddFavorite = []
 
-let random_start = 1; // От какого генерировать
+let random_start = 0; // От какого генерировать
 let random_end = data.length; // До какого генерировать
 
 let allСycles = data.length;
 
-let array = []
+let array = []  
 
 for (let i = random_start; i <= random_end; i++) {
     array.push(i)
@@ -176,9 +176,6 @@ const reload = (track) => {
 
                 div_menu.classList.add("active");
 
-                if (div_menu.classList.add("active")) {
-                    div_menu.onclick = () => div_menu.classList.remove("active");
-                }
                 if (activeButton) {
                     activeButton.classList.remove("active");
                 }

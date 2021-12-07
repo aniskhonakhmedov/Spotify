@@ -18,7 +18,7 @@ let music = [
         img: 'lovely',
 
         length: Number,
-        isLiked: false,
+        isLiked: true,
     },
     {
         title: 'bad guy',
@@ -27,7 +27,7 @@ let music = [
         img: 'badGuy',
 
         length: Number,
-        isLiked: false,
+        isLiked: true,
     },
     {
         title: 'Six Feet Under',
@@ -36,7 +36,7 @@ let music = [
         img: 'six',
 
         length: Number,
-        isLiked: false,
+        isLiked: true,
     },
     {
         title: 'Сан Ларан',
