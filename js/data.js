@@ -1,4 +1,4 @@
-let playlists = [{
+export let playlists = [{
     title: 'liked',
     music: []
 }]
@@ -143,5 +143,4 @@ let music = [
 music.forEach((item, i) => {
     item.id = i;
 });
-
-export default music
+export let data = music 

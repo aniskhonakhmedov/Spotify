@@ -1,7 +1,7 @@
-import music from './data.js'
+import { data, playlists } from './data.js'
 if (!localStorage.liked) localStorage.liked = []
 
-let data = music
+// let data = music
 let leftRandom = document.querySelector('.left-random')
 let midLiked = document.querySelector('.mid-liked')
 let RightListened = document.querySelector('.right-listened')
