@@ -757,3 +757,42 @@ main {
   border-radius: 6px;
   font-size: 16px;
 }
+
+@media only screen and (max-width: 1000px){
+  .name-tracks{
+      font-size: 30px;
+  }
+  .list-link{
+    font-size: 16px;
+  }
+  .name-track{
+    font-size: 30px;
+  }
+  .album{
+    width: 250px;
+  }
+  .album{
+    font-size: 16px;
+  }
+  .aside{
+    padding: 25px 40px 100px 20px;
+  }
+  .about .name p {
+    font-size: 14px;
+  }
+  .main {
+    padding: 20px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .list-link{
+    font-size: 12px;
+  }
+  .list-name{
+    font-size: 16px;
+  }
+  .item{
+    font-size: 16px;
+  }
+}

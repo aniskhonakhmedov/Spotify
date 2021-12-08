@@ -18,7 +18,7 @@ let music = [
         img: 'lovely',
 
         length: Number,
-        isLiked: true,
+        isLiked: false,
     },
     {
         title: 'bad guy',
@@ -27,7 +27,7 @@ let music = [
         img: 'badGuy',
 
         length: Number,
-        isLiked: true,
+        isLiked: false,
     },
     {
         title: 'Six Feet Under',
@@ -36,7 +36,7 @@ let music = [
         img: 'six',
 
         length: Number,
-        isLiked: true,
+        isLiked: false,
     },
     {
         title: 'Сан Ларан',
@@ -120,7 +120,7 @@ let music = [
         isLiked: false,
     },
     {
-        title: 'STAY (with Justin Bieber)',
+        title: 'STAY',
         author: 'The Kid LAROI, Justin Bieber',
         title_org: 'stay',
         img: 'stay',
