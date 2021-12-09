@@ -103,6 +103,7 @@ h6 {
   bottom: 0;
   left: 0;
   right: 0;
+  padding-left: 10px;
   height: 80px;
   background-color: black;
   z-index: 100;
@@ -875,16 +876,22 @@ main {
   }
 }
 
+.aside.active {
+  transform: translateX(0px);
+}
+
 @media only screen and (max-width: 500px) {
   .header .aside-logo {
     display: block;
     filter: invert(100%);
     margin-left: 10px;
   }
-
+  
   .aside {
     transform: translateX(-100px);
+    transition: .3s ease;
   }
+  
 
   .wrapper, .header {
     width: 100%;
