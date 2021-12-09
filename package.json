@@ -1,0 +1,29 @@
+{
+  "name": "wahtisit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "userlist.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aniskhonakhmedov/Spotify.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aniskhonakhmedov/Spotify/issues"
+  },
+  "homepage": "https://github.com/aniskhonakhmedov/Spotify#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
+    "sass": "^1.44.0"
+  }
+}

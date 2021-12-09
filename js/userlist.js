@@ -112,7 +112,7 @@ let listen = (param) => {
 const like = (details) => {
     liked_for_local.push(details)
 
-    localStorage.liked = liked_for_local
+    localStorage.liked = [...new Set(liked_for_local)]
 
     let find = data.filter(item => item.id == details)[0]
     find.isLiked = !find.isLiked

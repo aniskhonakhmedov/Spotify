@@ -10,7 +10,6 @@ let recently_for_local = localStorage.recently.split(',') || []
 // let data = music
 let name_ = document.querySelector('p[data-name="name"]')
 let author = document.querySelector('p[data-author="author"]')
-
 let leftRandom = document.querySelector('.left-random')
 let midLiked = document.querySelector('.mid-liked')
 let RightListened = document.querySelector('.right-listened')
@@ -112,13 +111,9 @@ const reload = (track) => {
                     if (div_menu.classList.contains("active")) return;
 
                     div_menu.classList.add("active");
+                    document.querySelector('.close').classList.add('active')
+                    if (activeButton) activeButton.classList.remove("active")
 
-                    if (div_menu.classList.add("active")) {
-                        div_menu.onclick = () => div_menu.classList.remove("active");
-                    }
-                    if (activeButton) {
-                        activeButton.classList.remove("active");
-                    }
                     activeButton = div_menu;
                 }
 
@@ -197,6 +192,7 @@ const reload = (track) => {
                         if (div_menu.classList.contains("active")) return;
 
                         div_menu.classList.add("active");
+                        document.querySelector('.close').classList.add('active')
 
                         if (activeButton) {
                             activeButton.classList.remove("active");
@@ -279,6 +275,7 @@ const reload = (track) => {
                         if (div_menu.classList.contains("active")) return;
 
                         div_menu.classList.add("active");
+                        document.querySelector('.close').classList.add('active')
 
                         if (div_menu.classList.add("active")) {
                             div_menu.onclick = () => div_menu.classList.remove("active");
@@ -314,7 +311,7 @@ reload(data)
 const like = (details) => {
     liked_for_local.push(details)
     // window.location.reload();
-    localStorage.liked = liked_for_local
+    localStorage.liked = [...new Set(liked_for_local)]
     let find = data.filter(item => item.id == details)[0]
     find.isLiked = !find.isLiked
 }
@@ -333,7 +330,7 @@ let listen = (param) => {
 let nedavno = (param) => {
     recently_for_local.push(param)
     // window.location.reload();
-    localStorage.recently = [...new Set(recently_for_local)] 
+    localStorage.recently = [...new Set(recently_for_local)]
 }
 
 let aside_logo = document.querySelector('.header .aside-logo')
@@ -342,5 +339,10 @@ let aside = document.querySelector('.aside')
 aside_logo.onclick = () => {
     console.log(123);
     aside.style.transform = 'translateX(0px);'
-    aside_logo.classList.add('active') 
+    aside_logo.classList.toggle('active')
+    aside.classList.toggle('active')
+}
+
+document.querySelector('.close').onclick = () => {
+    document.querySelector('.close').classList.remove('active')
 }
