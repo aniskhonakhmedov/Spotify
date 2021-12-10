@@ -920,13 +920,6 @@ h6 {
   margin: 0 auto
 }
 
-audio {
-  -webkit-transition: all .5s linear;
-  -o-transition: all .5s linear;
-  transition: all .5s linear;
-  border-radius: 7px 7px 7px 7px
-}
-
 .aside {
   position: fixed;
   top: 0;

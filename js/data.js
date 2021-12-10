@@ -3,6 +3,9 @@ export let playlists = [{
     music: []
 }]
 
+let treck_audio = document.querySelector('.treck_audio')
+
+
 let music = [
     // {
     //     title: String,
@@ -143,4 +146,12 @@ let music = [
 music.forEach((item, i) => {
     item.id = i;
 });
+
+for(let item of music){
+    // item.length = 
+    item.length = treck_audio.duration / 60
+    item.length = item.length.toString().replace('.', ':').slice(0, -14)
+    // console.log(item.length);
+}
+
 export let data = music 

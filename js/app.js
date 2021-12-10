@@ -3,6 +3,7 @@ import {
     playlists
 } from './data.js'
 if (!localStorage.liked) localStorage.liked = []
+localStorage.like += JSON.stringify(playlists)
 if (!localStorage.recently) localStorage.recently = []
 let liked_for_local = localStorage.liked.split(',') || []
 let recently_for_local = localStorage.recently.split(',') || []
@@ -16,6 +17,7 @@ let RightListened = document.querySelector('.right-listened')
 let activeButton = document.querySelector(".menu.active");
 let el = document.querySelector('audio')
 let treck_audio = document.querySelector('.treck_audio')
+let list = document.querySelector('.tra')
 
 let random_start = 0; // От какого генерировать
 let random_end = data.length; // До какого генерировать
@@ -118,6 +120,7 @@ const reload = (track) => {
                 }
 
                 div_img.onclick = () => {
+                    aside_reload()
                     listen(item)
                     nedavno(item.id)
                 }
@@ -201,6 +204,7 @@ const reload = (track) => {
                     }
 
                     div_img.onclick = () => {
+                        aside_reload()
                         listen(item)
                         nedavno(item.id)
                     }
@@ -288,6 +292,7 @@ const reload = (track) => {
 
                     div_img.onclick = () => {
                         listen(item)
+                        aside_reload()
                         recently_()
                         nedavno(item.id)
                     }
@@ -303,6 +308,22 @@ const reload = (track) => {
             }
         }
         recently_()
+
+        let aside_reload = () => {
+            for (let id of recently_for_local) {
+                if (item.id == id) {
+                    let a = document.createElement('a')
+                    let span = document.createElement('span')
+                    a.setAttribute('href', '#')
+                    a.innerHTML = item.title
+                    span.innerHTML = item.length
+                    a.classList.add('list-link')
+                    a.append(span)
+                    list.append(a)
+                }
+            }
+        }
+        aside_reload()
     }
 }
 reload(data)
@@ -310,7 +331,7 @@ reload(data)
 
 const like = (details) => {
     liked_for_local.push(details)
-    // window.location.reload();
+    window.location.reload();
     localStorage.liked = [...new Set(liked_for_local)]
     let find = data.filter(item => item.id == details)[0]
     find.isLiked = !find.isLiked
@@ -318,7 +339,6 @@ const like = (details) => {
 
 
 let listen = (param) => {
-    console.log(param);
     name_.innerHTML = param.title
     author.innerHTML = param.author
     treck_audio.setAttribute('src', `./audio/${param.title_org}.mp3`)
@@ -328,21 +348,8 @@ let listen = (param) => {
 }
 
 let nedavno = (param) => {
-    recently_for_local.push(param)
+    recently_for_local.unshift(param)
     // window.location.reload();
     localStorage.recently = [...new Set(recently_for_local)]
 }
 
-let aside_logo = document.querySelector('.header .aside-logo')
-let aside = document.querySelector('.aside')
-
-aside_logo.onclick = () => {
-    console.log(123);
-    aside.style.transform = 'translateX(0px);'
-    aside_logo.classList.toggle('active')
-    aside.classList.toggle('active')
-}
-
-document.querySelector('.close').onclick = () => {
-    document.querySelector('.close').classList.remove('active')
-}
