@@ -3,7 +3,6 @@ let aside = document.querySelector('.aside')
 let close_logo = document.querySelector('.close-logo')
 
 aside_logo.onclick = () => {
-    console.log(123);
     aside.style.transform = 'translateX(0px);'
     aside_logo.classList.toggle('active')
     aside.classList.toggle('active')
@@ -14,7 +13,6 @@ document.querySelector('.close').onclick = () => {
 }
 
 close_logo.onclick = () => {
-    console.log(close_logo);
     aside.style.transform = 'translateX(-1000px);'
     aside_logo.classList.remove('active')
     aside.classList.remove('active')

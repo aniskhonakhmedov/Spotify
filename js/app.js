@@ -9,14 +9,11 @@ let liked_for_local = localStorage.liked.split(',') || []
 let recently_for_local = localStorage.recently.split(',') || []
 
 // let data = music
-let name_ = document.querySelector('p[data-name="name"]')
-let author = document.querySelector('p[data-author="author"]')
 let leftRandom = document.querySelector('.left-random')
 let midLiked = document.querySelector('.mid-liked')
 let RightListened = document.querySelector('.right-listened')
 let activeButton = document.querySelector(".menu.active");
 let el = document.querySelector('audio')
-let treck_audio = document.querySelector('.treck_audio')
 let list = document.querySelector('.tra')
 
 let random_start = 0; // От какого генерировать
@@ -90,7 +87,7 @@ const reload = (track) => {
                 p_time.classList.add('time')
                 div_menu.classList.add("menu")
                 img_circle.classList.add('three-circle')
-
+                img_author.classList.add('hre')
 
                 div_num.innerHTML = ++num_num
                 img_author.setAttribute('src', `./picture/${item.img}.jpg`)
@@ -295,6 +292,7 @@ const reload = (track) => {
                         aside_reload()
                         recently_()
                         nedavno(item.id)
+                        
                     }
 
                     div_main.append(div_num, div_info, div_img, div_about)
@@ -316,10 +314,12 @@ const reload = (track) => {
                     let span = document.createElement('span')
                     a.setAttribute('href', '#')
                     a.innerHTML = item.title
-                    span.innerHTML = item.length
+                    setTimeout(() => {
+                        span.innerHTML = item.length
+                    }, 300);
                     a.classList.add('list-link')
                     a.append(span)
-                    list.append(a)
+                    list.prepend(a)
                 }
             }
         }
@@ -337,19 +337,8 @@ const like = (details) => {
     find.isLiked = !find.isLiked
 }
 
-
-let listen = (param) => {
-    name_.innerHTML = param.title
-    author.innerHTML = param.author
-    treck_audio.setAttribute('src', `./audio/${param.title_org}.mp3`)
-    treck_audio.removeAttribute('muted', "muted")
-    treck_audio.setAttribute('autoplay', 'autoplay')
-    param.length = el.duration
-}
-
 let nedavno = (param) => {
     recently_for_local.unshift(param)
-    // window.location.reload();
     localStorage.recently = [...new Set(recently_for_local)]
 }
 

@@ -147,11 +147,32 @@ music.forEach((item, i) => {
     item.id = i;
 });
 
+let div = document.createElement('div')
+div.classList.add('hidden')
+
 for(let item of music){
-    // item.length = 
-    item.length = treck_audio.duration / 60
-    item.length = item.length.toString().replace('.', ':').slice(0, -14)
-    // console.log(item.length);
+    // READ MUSIC INFO
+    let audio = document.createElement('audio')
+
+    audio.setAttribute('src', './audio/' + item.title_org + '.mp3')
+    audio.controls = true
+
+    // audio.style.position = 'fixed'
+    // audio.style.zIndex = '1000'
+    // audio.style.width = '400px'
+    // audio.id = 'hello'
+    
+    div.innerHTML = ''
+    div.append(audio)
+    document.body.prepend(div)
+
+    audio.duration ? console.log(audio.duration) : console.log('NO FILE!')
+
+    audio.addEventListener("loadeddata", function() {
+        item.length = audio.duration / 60
+        item.length = item.length.toString().replace('.', ':').slice(0, 4)
+        console.log(item.length);
+    });
 }
 
 export let data = music 
