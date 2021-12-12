@@ -104,24 +104,24 @@ let music = [
         length: Number,
         isLiked: false,
     },
-    {
-        title: 'PUSSY BOY',
-        author: 'ЕГОР КРИД',
-        title_org: 'PUSSYBOY',
-        img: 'pussy',
+    // {
+    //     title: 'PUSSY BOY',
+    //     author: 'ЕГОР КРИД',
+    //     title_org: 'PUSSYBOY',
+    //     img: 'pussy',
 
-        length: Number,
-        isLiked: false,
-    },
-    {
-        title: 'LIPSI HA',
-        author: 'INSTASAMKA',
-        title_org: 'LIPSIHA',
-        img: 'lipsi',
+    //     length: Number,
+    //     isLiked: false,
+    // },
+    // {
+    //     title: 'LIPSI HA',
+    //     author: 'INSTASAMKA',
+    //     title_org: 'LIPSIHA',
+    //     img: 'lipsi',
 
-        length: Number,
-        isLiked: false,
-    },
+    //     length: Number,
+    //     isLiked: false,
+    // },
     {
         title: 'STAY',
         author: 'The Kid LAROI, Justin Bieber',
@@ -157,21 +157,15 @@ for(let item of music){
     audio.setAttribute('src', './audio/' + item.title_org + '.mp3')
     audio.controls = true
 
-    // audio.style.position = 'fixed'
-    // audio.style.zIndex = '1000'
-    // audio.style.width = '400px'
-    // audio.id = 'hello'
-    
     div.innerHTML = ''
     div.append(audio)
     document.body.prepend(div)
 
-    audio.duration ? console.log(audio.duration) : console.log('NO FILE!')
-
+    
     audio.addEventListener("loadeddata", function() {
+        // audio.duration ? console.log(audio.duration) : console.log('NO FILE!')
         item.length = audio.duration / 60
         item.length = item.length.toString().replace('.', ':').slice(0, 4)
-        console.log(item.length);
     });
 }
 

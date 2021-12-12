@@ -11,6 +11,14 @@ let recently_for_local = localStorage.recently.split(',') || []
 // let data = music
 let leftRandom = document.querySelector('.left-random')
 let midLiked = document.querySelector('.mid-liked')
+let pause = document.querySelector('.pause')
+let play = document.querySelector('.play')
+let treck_audio = document.querySelector('.treck_audio')
+
+let name_ = document.querySelector('p[data-name="name"]')
+let author = document.querySelector('p[data-author="author"]')
+let second_num = document.querySelector('.second-num')
+
 let RightListened = document.querySelector('.right-listened')
 let activeButton = document.querySelector(".menu.active");
 let el = document.querySelector('audio')
@@ -342,3 +350,18 @@ let nedavno = (param) => {
     localStorage.recently = [...new Set(recently_for_local)]
 }
 
+let listen = (param) => {
+    name_.innerHTML = param.title
+    author.innerHTML = param.author
+    treck_audio.setAttribute('src', `./audio/${param.title_org}.mp3`)
+    second_num.innerHTML = param.length
+    treck_audio.removeAttribute('muted', "muted")
+    treck_audio.setAttribute('autoplay', 'autoplay')
+    treck_audio.play()
+    play.classList.remove('active')
+    pause.classList.add('active')
+ }
+ 
+ let unlisten = () => {
+    treck_audio.removeAttribute('src', `./audio/${param.title_org}.mp3`)
+ }

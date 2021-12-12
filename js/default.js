@@ -1,3 +1,8 @@
+import {
+   data,
+   playlists
+} from './data.js'
+
 let aside = document.querySelector('.aside')
 let audio = document.querySelector('.audio')
 let el = document.querySelector('audio')
@@ -49,18 +54,19 @@ audio.innerHTML = `<figure>
 </div>
 `
 
-header.innerHTML = `<header class="header">
+header.innerHTML = `
 <div class="hidden"><img src="./img/logo.png" class="aside-logo" alt=""></div>
 <div class="header-search">
-   <input type="text" class="search" placeholder="Search by name and artist">
+   <input type="text" class="search" id="input" placeholder="Search by name and artist">
+   <div class="search_treck"></div>
    <img src="./img/search.png" width="30px">
 </div>
 <a href="#" class="header-user">
    <div class="header-user-name">Alex Adams</div>
    <div class="header-user-status">Free user</div>
-</a>
-</header>`
+</a>`
 
+   
 let img_listen = document.querySelectorAll('.hre')
 let pause = document.querySelector('.pause')
 let play = document.querySelector('.play')
@@ -69,21 +75,7 @@ let author = document.querySelector('p[data-author="author"]')
 let treck_audio = document.querySelector('.treck_audio')
 let second_num = document.querySelector('.second-num')
 
-let listen = (param) => {
-   name_.innerHTML = param.title
-   author.innerHTML = param.author
-   treck_audio.setAttribute('src', `./audio/${param.title_org}.mp3`)
-   second_num.innerHTML = param.length
-   treck_audio.removeAttribute('muted', "muted")
-   treck_audio.setAttribute('autoplay', 'autoplay')
-   treck_audio.play()
-   play.classList.remove('active')
-   pause.classList.add('active')
-}
 
-let unlisten = () => {
-   treck_audio.removeAttribute('src', `./audio/${param.title_org}.mp3`)
-}
 
 pause.onclick = () => {
    if (treck_audio.paused == false) treck_audio.pause();
@@ -100,6 +92,55 @@ play.onclick = () => {
 }
 
 setInterval(() => {
-   console.log("clear");
    localStorage.clear()
 }, 10000);
+
+
+
+let search = document.querySelector('.search')
+let search_treck = document.querySelector('.search_treck')
+
+// search.onkeyup = () => {
+
+//    localStorage.search = event.target.value.trim()
+
+//    if (event.target.value.trim().length >= 2) {
+//       document.querySelector('.search_treck').classList.add('active')
+//       search_treck.innerHTML = ''
+//       for (let item of data) {
+//          if (localStorage.search == item.title) {
+//             console.log('create!');
+
+//             let name_p = document.createElement('p')
+//             let author_p = document.createElement('p')
+//             let length_p = document.createElement('p')
+//             let div_block = document.createElement('div')
+//             let left_div = document.createElement('div')
+//             let right_div = document.createElement('div')
+
+//             name_p.innerHTML = item.title
+//             author_p.innerHTML = item.author
+//             length_p.innerHTML = item.length
+
+//             left_div.append(name_p, author_p)
+//             right_div.append(length_p)
+//             div_block.append(left_div, right_div)
+//             search_treck.append(div_block)
+//          } else console.log(123);
+//       }
+//    } else document.querySelector('.search_treck').classList.remove('active')
+
+// }
+
+document.getElementById('input').addEventListener('change', onChange());
+
+function onChange() {
+  var text = document.getElementsByTagName("input");
+  var val = text.value;
+
+  data.forEach(function(item) {
+    if (item.title.includes(val)) {
+      console.log(item.title);
+    }
+  });
+}
