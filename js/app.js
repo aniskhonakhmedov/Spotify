@@ -8,14 +8,15 @@ if (!localStorage.recently) localStorage.recently = []
 let liked_for_local = localStorage.liked.split(',') || []
 let recently_for_local = localStorage.recently.split(',') || []
 
-// let data = music
 let leftRandom = document.querySelector('.left-random')
 let midLiked = document.querySelector('.mid-liked')
 let pause = document.querySelector('.pause')
 let play = document.querySelector('.play')
 let treck_audio = document.querySelector('.treck_audio')
 
+let name__ = document.querySelector('.name-tracks')
 let name_ = document.querySelector('p[data-name="name"]')
+let author_ = document.querySelector('.name-track')
 let author = document.querySelector('p[data-author="author"]')
 let second_num = document.querySelector('.second-num')
 
@@ -24,22 +25,27 @@ let activeButton = document.querySelector(".menu.active");
 let el = document.querySelector('audio')
 let list = document.querySelector('.tra')
 
-let random_start = 0; // От какого генерировать
-let random_end = data.length; // До какого генерировать
-
-let allСycles = data.length;
-
 let array = []
-
-for (let i = random_start; i <= random_end; i++) {
-    array.push(i)
-}
 let numbers = []
 
-for (let countCycles = 1; countCycles <= allСycles; countCycles++) {
-    numbers.push(array.splice(Math.random() * array.length, 1)[0])
+let randomNumber = () => {
+    let random_start = 0; // От какого генерировать
+    let random_end = data.length; // До какого генерировать
+    
+    let allСycles = data.length;
+    
+    
+    for (let i = random_start; i <= random_end; i++) {
+        array.push(i)
+    }
+    
+    for (let countCycles = 1; countCycles <= allСycles; countCycles++) {
+        numbers.push(array.splice(Math.random() * array.length, 1)[0])
+    }
+    numbers.splice(10)
 }
-numbers.splice(11)
+
+randomNumber()
 
 let p_rand = document.createElement('p')
 p_rand.innerHTML = '10 random songs'
@@ -353,6 +359,8 @@ let nedavno = (param) => {
 let listen = (param) => {
     name_.innerHTML = param.title
     author.innerHTML = param.author
+    name__.innerHTML = param.title
+    author_.innerHTML = param.author
     treck_audio.setAttribute('src', `./audio/${param.title_org}.mp3`)
     second_num.innerHTML = param.length
     treck_audio.removeAttribute('muted', "muted")
@@ -360,8 +368,4 @@ let listen = (param) => {
     treck_audio.play()
     play.classList.remove('active')
     pause.classList.add('active')
- }
- 
- let unlisten = () => {
-    treck_audio.removeAttribute('src', `./audio/${param.title_org}.mp3`)
  }
