@@ -66,7 +66,7 @@ header.innerHTML = `
    <div class="header-user-status">Free user</div>
 </a>`
 
-   
+
 let img_listen = document.querySelectorAll('.hre')
 let pause = document.querySelector('.pause')
 let play = document.querySelector('.play')
@@ -100,47 +100,70 @@ setInterval(() => {
 let search = document.querySelector('.search')
 let search_treck = document.querySelector('.search_treck')
 
-// search.onkeyup = () => {
+search.onkeyup = () => {
+   
+   localStorage.search = event.target.value.trim()
+   
+   document.querySelector('.search_treck').classList.add('active')
+   document.querySelector('.search_treck').style.display = 'block'
+   if (event.target.value.trim().length >= 2) {
+      search_treck.innerHTML = ''
+      for (let item of data) {
+         if (item.title.toLowerCase().trim().includes(event.target.value.toLowerCase().trim())) {
+            console.log('create!');
 
-//    localStorage.search = event.target.value.trim()
+            let name_p = document.createElement('p')
+            let author_p = document.createElement('p')
+            let length_p = document.createElement('p')
+            let div_block = document.createElement('div')
+            let left_div = document.createElement('div')
+            let right_div = document.createElement('div')
 
-//    if (event.target.value.trim().length >= 2) {
-//       document.querySelector('.search_treck').classList.add('active')
-//       search_treck.innerHTML = ''
-//       for (let item of data) {
-//          if (localStorage.search == item.title) {
-//             console.log('create!');
+            div_block.classList.add('asdf')
 
-//             let name_p = document.createElement('p')
-//             let author_p = document.createElement('p')
-//             let length_p = document.createElement('p')
-//             let div_block = document.createElement('div')
-//             let left_div = document.createElement('div')
-//             let right_div = document.createElement('div')
+            name_p.innerHTML = item.title
+            author_p.innerHTML = item.author
+            length_p.innerHTML = item.length
 
-//             name_p.innerHTML = item.title
-//             author_p.innerHTML = item.author
-//             length_p.innerHTML = item.length
+            left_div.append(name_p, author_p)
+            right_div.append(length_p)
+            div_block.append(left_div, right_div)
+            search_treck.append(div_block)
 
-//             left_div.append(name_p, author_p)
-//             right_div.append(length_p)
-//             div_block.append(left_div, right_div)
-//             search_treck.append(div_block)
-//          } else console.log(123);
-//       }
-//    } else document.querySelector('.search_treck').classList.remove('active')
+            div_block.onclick = () => listen(item)
+         }
+      }
+   } else {
+      document.querySelector('.search_treck').classList.remove('active')
+      document.querySelector('.search_treck').style.display = 'none'
+   }
 
-// }
+   // if(){
+
+   // }
+}
 
 document.getElementById('input').addEventListener('change', onChange());
 
 function onChange() {
-  var text = document.getElementsByTagName("input");
-  var val = text.value;
+   var text = document.getElementsByTagName("input");
+   var val = text.value;
 
-  data.forEach(function(item) {
-    if (item.title.includes(val)) {
-      console.log(item.title);
-    }
-  });
+   data.forEach(function (item) {
+      if (item.title.includes(val)) {
+         console.log(item.title);
+      }
+   });
+}
+
+let listen = (param) => {
+   name_.innerHTML = param.title
+   author.innerHTML = param.author
+   treck_audio.setAttribute('src', `./audio/${param.title_org}.mp3`)
+   second_num.innerHTML = param.length
+   treck_audio.removeAttribute('muted', "muted")
+   treck_audio.setAttribute('autoplay', 'autoplay')
+   treck_audio.play()
+   play.classList.remove('active')
+   pause.classList.add('active')
 }
