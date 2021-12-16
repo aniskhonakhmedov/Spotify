@@ -18,15 +18,22 @@
       </a>
       <audio class="audio-play" src="" controls muted></audio>
    </div>
-   
+
    <aside class="aside"></aside>
 
-   <div class="wrapper">
+   <div class="wrapper" style="margin-top: 10px;">
       <header class="header">
       </header>
       <!-- можно создать одельный файл как header aside audio -->
-      <button class="create">+ Create playlist</button>
       <main>
+         <button class="create">+ Create playlist</button>
+         <p style="margin-top: 20px;">
+            Your play list
+         </p>
+
+         <div class="set">
+            
+         </div>
       </main>
    </div>
 
@@ -37,14 +44,15 @@
          <form name="register">
             <label for="">Name</label>
             <input type="text" name="title" class="input" placeholder="Name your playlist">
-            <button>Создать</button>
+            <button class="create-close">Создать</button>
          </form>
       </div>
    </div>
-   
+
    <script src="./js/data.js" type="script/javascript"></script>
    <script src="./js/default.js" type="module"></script>
    <script src="./js/playlist.js" type="module"></script>
+   <script src="./js/animation.js"></script>
 </body>
 
 </html>

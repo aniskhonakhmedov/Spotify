@@ -7,6 +7,10 @@ let aside = document.querySelector('.aside')
 let audio = document.querySelector('.audio')
 let el = document.querySelector('audio')
 let header = document.querySelector('.header')
+setTimeout(() => {
+   let list_playlist = document.querySelector('.list-playlist')
+   console.log(list_playlist);
+}, 100);
 
 aside.innerHTML = `<a href="#" class="aside-logo close-logo">
 <img src="./img/logo.png">
@@ -20,7 +24,7 @@ aside.innerHTML = `<a href="#" class="aside-logo close-logo">
 
 <div class="list">
 <p class="list-name">PLAYLISTS</p>
-<a href="./userlist.html" class="list-link">Liked songs</a>
+<div class="list-playlist"></div>
 </div>
 
 <div class="list tra">
@@ -91,12 +95,6 @@ play.onclick = () => {
    pause.classList.add('active')
 }
 
-setInterval(() => {
-   localStorage.clear()
-}, 10000);
-
-
-
 let search = document.querySelector('.search')
 let search_treck = document.querySelector('.search_treck')
 
@@ -166,4 +164,8 @@ let listen = (param) => {
    treck_audio.play()
    play.classList.remove('active')
    pause.classList.add('active')
+}
+
+let list_reload_playlist = () => {
+
 }
