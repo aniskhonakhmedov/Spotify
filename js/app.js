@@ -1,9 +1,7 @@
-import {
-    data,
-    playlists
-} from './data.js'
+import { data, all_play } from './data.js'
+
 if (!localStorage.liked) localStorage.liked = []
-localStorage.like += JSON.stringify(playlists)
+localStorage.like += JSON.stringify(all_play)
 if (!localStorage.recently) localStorage.recently = []
 let liked_for_local = localStorage.liked.split(',') || []
 let recently_for_local = localStorage.recently.split(',') || []
@@ -13,6 +11,9 @@ let midLiked = document.querySelector('.mid-liked')
 let pause = document.querySelector('.pause')
 let play = document.querySelector('.play')
 let treck_audio = document.querySelector('.treck_audio')
+let list_playlist = document.querySelector('.list-playlist')
+let close = document.querySelector('.close')
+console.log(close);
 
 let name__ = document.querySelector('.name-tracks')
 let name_ = document.querySelector('p[data-name="name"]')
@@ -301,6 +302,10 @@ const reload = (track) => {
                         activeButton = div_menu;
                     }
 
+                    close.onclick = () => {
+                        div_menu.classList.remove('active')
+                    }
+
                     div_img.onclick = () => {
                         listen(item)
                         aside_reload()
@@ -328,12 +333,15 @@ const reload = (track) => {
                     let span = document.createElement('span')
                     a.setAttribute('href', '#')
                     a.innerHTML = item.title
+
                     setTimeout(() => {
                         span.innerHTML = item.length
                     }, 300);
+
+                    // console.log(item.length);
                     a.classList.add('list-link')
                     a.append(span)
-                    list.prepend(a)
+                    list.append(a)
                 }
             }
         }
@@ -361,6 +369,7 @@ let listen = (param) => {
     author.innerHTML = param.author
     name__.innerHTML = param.title
     author_.innerHTML = param.author
+    
     treck_audio.setAttribute('src', `./audio/${param.title_org}.mp3`)
     second_num.innerHTML = param.length
     treck_audio.removeAttribute('muted', "muted")
@@ -369,3 +378,4 @@ let listen = (param) => {
     play.classList.remove('active')
     pause.classList.add('active')
  }
+

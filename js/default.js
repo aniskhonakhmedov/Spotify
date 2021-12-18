@@ -1,15 +1,15 @@
 import {
    data,
-   playlists
+   all_play
 } from './data.js'
 
 let aside = document.querySelector('.aside')
 let audio = document.querySelector('.audio')
 let el = document.querySelector('audio')
 let header = document.querySelector('.header')
+
 setTimeout(() => {
    let list_playlist = document.querySelector('.list-playlist')
-   console.log(list_playlist);
 }, 100);
 
 aside.innerHTML = `<a href="#" class="aside-logo close-logo">
@@ -166,6 +166,16 @@ let listen = (param) => {
    pause.classList.add('active')
 }
 
-let list_reload_playlist = () => {
+let list_playlist = document.querySelector('.list-playlist')
 
+let list_reload_playlist_aside = () => {
+   list_playlist.innerHTML = ''
+
+   for (let item of all_play) {
+       let p = document.createElement('p')
+       p.innerHTML = item.title
+       list_playlist.append(p)
+   }
 }
+
+list_reload_playlist_aside()

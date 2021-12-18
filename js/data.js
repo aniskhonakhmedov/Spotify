@@ -1,7 +1,19 @@
-export let playlists = [{
+let playlists = [{
     title: 'liked',
     music: []
 }]
+
+if (localStorage.playlist) playlists = localStorage.playlist
+
+let all_play = []
+
+for (let item of localStorage.playlist.split('undefined')[1].split('$').splice(1)) {
+    item = JSON.parse(item)
+    console.log(item);
+    all_play.push(item)
+}
+console.log(all_play);
+
 
 let treck_audio = document.querySelector('.treck_audio')
 
@@ -50,24 +62,24 @@ let music = [
         length: Number,
         isLiked: false,
     },
-    // {
-    //     title: 'Младшая сестра',
-    //     author: 'дора',
-    //     title_org: 'МладшаяСестра',
-    //     img: 'doradura',
+    {
+        title: 'Младшая сестра',
+        author: 'дора',
+        title_org: 'МладшаяСестра',
+        img: 'doradura',
 
-    //     length: Number,
-    //     isLiked: false,
-    // },
-    // {
-    //     title: 'Втюрилась',
-    //     author: 'дора',
-    //     title_org: 'Втюрилась',
-    //     img: 'vturilas',
+        length: Number,
+        isLiked: false,
+    },
+    {
+        title: 'Втюрилась',
+        author: 'дора',
+        title_org: 'Втюрилась',
+        img: 'vturilas',
 
-    //     length: Number,
-    //     isLiked: false,
-    // },
+        length: Number,
+        isLiked: false,
+    },
     {
         title: 'Дорадура',
         author: 'дора',
@@ -104,24 +116,24 @@ let music = [
         length: Number,
         isLiked: false,
     },
-    // {
-    //     title: 'PUSSY BOY',
-    //     author: 'ЕГОР КРИД',
-    //     title_org: 'PUSSYBOY',
-    //     img: 'pussy',
+    {
+        title: 'PUSSY BOY',
+        author: 'ЕГОР КРИД',
+        title_org: 'PUSSYBOY',
+        img: 'pussy',
 
-    //     length: Number,
-    //     isLiked: false,
-    // },
-    // {
-    //     title: 'LIPSI HA',
-    //     author: 'INSTASAMKA',
-    //     title_org: 'LIPSIHA',
-    //     img: 'lipsi',
+        length: Number,
+        isLiked: false,
+    },
+    {
+        title: 'LIPSI HA',
+        author: 'INSTASAMKA',
+        title_org: 'LIPSIHA',
+        img: 'lipsi',
 
-    //     length: Number,
-    //     isLiked: false,
-    // },
+        length: Number,
+        isLiked: false,
+    },
     {
         title: 'STAY',
         author: 'The Kid LAROI, Justin Bieber',
@@ -150,7 +162,8 @@ music.forEach((item, i) => {
 let div = document.createElement('div')
 div.classList.add('hidden')
 
-for(let item of music){
+let data = music
+for (let item of music) {
     // READ MUSIC INFO
     let audio = document.createElement('audio')
 
@@ -161,12 +174,17 @@ for(let item of music){
     div.append(audio)
     document.body.prepend(div)
 
-    
-    audio.addEventListener("loadeddata", function() {
+
+    audio.addEventListener("loadeddata", function () {
         // audio.duration ? console.log(audio.duration) : console.log('NO FILE!')
-        item.length = audio.duration / 60
-        item.length = item.length.toString().replace('.', ':').slice(0, 4)
+        item.length = audio.duration 
+        item.length = item.length / 60
+        item.length = Math.ceil((item.length)*100)/100
+        item.length = item.length.toString().replace('.', ':')
+        data.push(item)
     });
 }
 
-export let data = music 
+
+export { data, all_play } 
+
