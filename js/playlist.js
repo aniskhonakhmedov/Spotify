@@ -39,7 +39,6 @@ btn.onclick = () => {
 }
 
 create.onclick = () => {
-    window.location.reload()    
     if (document.querySelector('.input').value === '') {
         create.style.backgroundColor = 'red'
         create.setAttribute('disabled', 'disabled')
@@ -48,6 +47,7 @@ create.onclick = () => {
             create.removeAttribute('disabled', 'disabled')
         }, 400);
     } else {
+        window.location.reload()    
         list_reload_playlist_aside()
         list_reload_playlist_main()
         modal.classList.remove('active')
@@ -79,3 +79,7 @@ form.onsubmit = () => {
 
 list_reload_playlist_aside()
 list_reload_playlist_main()
+
+
+//Send id in playlist
+

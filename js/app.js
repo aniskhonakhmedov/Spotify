@@ -13,7 +13,6 @@ let play = document.querySelector('.play')
 let treck_audio = document.querySelector('.treck_audio')
 let list_playlist = document.querySelector('.list-playlist')
 let close = document.querySelector('.close')
-console.log(close);
 
 let name__ = document.querySelector('.name-tracks')
 let name_ = document.querySelector('p[data-name="name"]')
@@ -32,14 +31,14 @@ let numbers = []
 let randomNumber = () => {
     let random_start = 0; // От какого генерировать
     let random_end = data.length; // До какого генерировать
-    
+
     let allСycles = data.length;
-    
-    
+
+
     for (let i = random_start; i <= random_end; i++) {
         array.push(i)
     }
-    
+
     for (let countCycles = 1; countCycles <= allСycles; countCycles++) {
         numbers.push(array.splice(Math.random() * array.length, 1)[0])
     }
@@ -66,6 +65,8 @@ const reload = (track) => {
     midLiked.append(p_liked)
     num_num = 0
     for (let item of track) {
+
+        //Рандомные треки (10шт)
         for (let num of numbers) {
             if (item.id == num) {
                 let div_main = document.createElement('div')
@@ -131,6 +132,14 @@ const reload = (track) => {
                     activeButton = div_menu;
                 }
 
+                p_add.onclick = () => {
+                    modal.classList.add('active')
+                    send_idPlayList(item.id)
+                    document.body.style.overflow = 'hidden'
+                }
+
+
+
                 div_img.onclick = () => {
                     aside_reload()
                     listen(item)
@@ -147,6 +156,8 @@ const reload = (track) => {
             }
 
         }
+
+        //Понравившиеся треки
         let like_reload = () => {
             // midLiked.innerHTML = ''
             for (let id of liked_for_local) {
@@ -221,6 +232,13 @@ const reload = (track) => {
                         nedavno(item.id)
                     }
 
+                    p_add.onclick = () => {
+                        modal.classList.add('active')
+                        send_idPlayList(item.id)
+                        document.body.style.overflow = 'hidden'
+                    }
+
+
                     div_main.append(div_num, div_info, div_img, div_about)
                     div_img.append(img_author)
                     div_about.append(div_name, div_time_menu)
@@ -233,6 +251,7 @@ const reload = (track) => {
         }
         like_reload()
 
+        //Недавно
         let recently_ = () => {
             for (let id of recently_for_local) {
                 if (item.id == id) {
@@ -306,12 +325,18 @@ const reload = (track) => {
                         div_menu.classList.remove('active')
                     }
 
+                    p_add.onclick = () => {
+                        modal.classList.add('active')
+                        send_idPlayList(item.id)
+                        document.body.style.overflow = 'hidden'
+                    }
+
                     div_img.onclick = () => {
                         listen(item)
                         aside_reload()
                         recently_()
                         nedavno(item.id)
-                        
+
                     }
 
                     div_main.append(div_num, div_info, div_img, div_about)
@@ -369,7 +394,7 @@ let listen = (param) => {
     author.innerHTML = param.author
     name__.innerHTML = param.title
     author_.innerHTML = param.author
-    
+
     treck_audio.setAttribute('src', `./audio/${param.title_org}.mp3`)
     second_num.innerHTML = param.length
     treck_audio.removeAttribute('muted', "muted")
@@ -377,5 +402,115 @@ let listen = (param) => {
     treck_audio.play()
     play.classList.remove('active')
     pause.classList.add('active')
- }
+}
+
+let btn = document.querySelector('.create')
+let modal = document.querySelector('.modal')
+let bg = document.querySelector('.bg')
+let main = document.querySelector('main')
+let create = document.querySelector('.create-close')
+let set = document.querySelector('.set')
+
+
+//playlist
+let list_reload_playlist_aside = () => {
+    list_playlist.innerHTML = ''
+
+    for (let item of all_play) {
+        let p = document.createElement('a')
+
+        p.setAttribute('href', "./playlist.html")
+        p.style.color = 'white'
+        p.style.display = 'block'
+        p.innerHTML = item.title
+        list_playlist.append(p)
+    }
+}
+
+
+
+create.onclick = () => {
+    if (document.querySelector('.input').value === '') {
+        create.style.backgroundColor = 'red'
+        create.setAttribute('disabled', 'disabled')
+        setTimeout(() => {
+            create.style.backgroundColor = 'transparent'
+            create.removeAttribute('disabled', 'disabled')
+        }, 400);
+    } else {
+        window.location.reload()
+        list_reload_playlist_aside()
+        list_reload_playlist_main()
+        modal.classList.remove('active')
+        console.log("Done!");
+    }
+}
+
+bg.onclick = () => {
+    modal.classList.remove('active')
+}
+let obj = {}
+
+let form = document.forms.register
+
+form.onsubmit = () => {
+    event.preventDefault()
+
+    let fm = new FormData(form)
+
+    fm.forEach((value, key) => {
+        obj[key] = value
+        obj['music'] = []
+    })
+    localStorage.playlist += '$' + JSON.stringify(obj)
+
+    list_reload_playlist_aside()
+    reload_playlist()
+}
+
+list_reload_playlist_aside()
+// list_reload_playlist_main()
+
+let p_playList = document.querySelector('.playlistName')
+// console.l    og(p_playList);
+
+let reload_playlist = () => {
+    p_playList.innerHTML = ''
+
+    for (let item of all_play) {
+        // console.log(item);
+        let p = document.createElement('p')
+        let count = document.createElement('p')
+        let block_p = document.createElement('div')
+
+        count.innerHTML = item.music.length + ' songs'
+        p.innerHTML = item.title
+        block_p.onclick = () => {
+            takePlaylist(item)
+        }
+
+        block_p.classList.add('som')
+        block_p.append(p, count)
+        p_playList.append(block_p)
+    }
+}
+reload_playlist()
+
+let send = []
+let send_idPlayList = (param) => {
+    send.push(param)
+}
+
+//take playlist
+
+let takePlaylist = (param) => {
+    for(let item of send){
+        if(param.music.includes(item)){
+            console.log('have');
+        } else{
+            param.music.push(item)
+            console.log(param);
+        }
+    }
+}
 

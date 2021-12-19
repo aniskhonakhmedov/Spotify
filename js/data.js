@@ -2,17 +2,14 @@ let playlists = [{
     title: 'liked',
     music: []
 }]
-
-if (localStorage.playlist) playlists = localStorage.playlist
-
 let all_play = []
 
-for (let item of localStorage.playlist.split('undefined')[1].split('$').splice(1)) {
-    item = JSON.parse(item)
-    console.log(item);
-    all_play.push(item)
+if(localStorage.playlist){
+    for (let item of localStorage.playlist.split('$').splice(1)) {
+        item = JSON.parse(item)
+        all_play.push(item)
+    }
 }
-console.log(all_play);
 
 
 let treck_audio = document.querySelector('.treck_audio')

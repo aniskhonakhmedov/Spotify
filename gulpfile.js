@@ -8,7 +8,7 @@ const sass = require('gulp-sass')(require('sass')) // scss sass
 const paths = {
     styles: {
         src: {
-            custom: './css/**/*.css'
+            custom: './css/**/*.scss'
         },
         dist: './static/css'
     }
