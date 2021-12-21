@@ -2,6 +2,7 @@ let playlists = [{
     title: 'liked',
     music: []
 }]
+
 let all_play = []
 
 if(localStorage.playlist){
@@ -10,10 +11,6 @@ if(localStorage.playlist){
         all_play.push(item)
     }
 }
-
-
-let treck_audio = document.querySelector('.treck_audio')
-
 
 let music = [
     // {

@@ -117,6 +117,8 @@ const reload = (track) => {
                 p_add.innerHTML = 'Add to playlist'
                 p_listen.innerHTML = 'Listen now'
 
+                
+
                 p_like.onclick = () => {
                     like(item.id)
                     event.preventDefault()
