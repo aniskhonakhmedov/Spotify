@@ -33,22 +33,16 @@
 }
 
 .naviga{
-    position: absolute;
-    // filter: invert(100%);
-    height: 24px;
-    width: fit-content;
-    top: 30%;
-    left: 50%;
-    // background-color: #000;
-    transform: translate(-50%,-50%);
-
+    width: 100%;
+    margin: -15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 0;
+    // position: relative;
     img{
-        // top: 50%;
-        // left: 50%;
-        width: 30px;
         margin: 0px 25px;
-        // transform: translate(-50%,-50%);
-        position: relative;
+        width: 30px;
         filter: invert(100%);
         &:hover{
             cursor: pointer;
@@ -75,24 +69,21 @@
     align-items: center;
 }
 
+.count{
+    border-radius: 10px;
+    height: 5px;
+    background-color: #155fff;
+}
+
 .top {
     width: 100%;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.top img {
-    filter: invert(100%);
-    position: absolute;
-    // top: 30%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
+    img{
+        filter: invert(100%);
+    }
 }
 
 .bottom {
@@ -114,6 +105,7 @@
 .long {
     width: 40%;
     height: 5px;
+    border-radius: 10px;
     background-color: #00ecbe;
 }
 
@@ -130,19 +122,17 @@
 
 .hg {
     display: none;
-}
-
-.hg:hover {
-    cursor: pointer;
+    &:hover{
+        cursor: pointer;
+    }
+    &.active{
+        display: block;
+    }
 }
 
 .treck_audio {
     width: 0%;
     margin: 0 auto !important;
-}
-
-.hg.active {
-    display: block;
 }
 
 figure {

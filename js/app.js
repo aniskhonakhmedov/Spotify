@@ -6,6 +6,8 @@ if (!localStorage.recently) localStorage.recently = []
 let liked_for_local = localStorage.liked.split(',') || []
 let recently_for_local = localStorage.recently.split(',') || []
 
+let right_r = document.querySelector('.right-r')
+let left_l = document.querySelector('.left-l')
 let leftRandom = document.querySelector('.left-random')
 let midLiked = document.querySelector('.mid-liked')
 let pause = document.querySelector('.pause')

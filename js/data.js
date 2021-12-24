@@ -5,7 +5,7 @@ let playlists = [{
 
 let all_play = []
 
-if(localStorage.playlist){
+if (localStorage.playlist) {
     for (let item of localStorage.playlist.split('$').splice(1)) {
         item = JSON.parse(item)
         all_play.push(item)
@@ -171,14 +171,16 @@ for (let item of music) {
 
     audio.addEventListener("loadeddata", function () {
         // audio.duration ? console.log(audio.duration) : console.log('NO FILE!')
-        item.length = audio.duration 
+        item.length = audio.duration
         item.length = item.length / 60
-        item.length = Math.ceil((item.length)*100)/100
+        item.length = Math.ceil((item.length) * 100) / 100
         item.length = item.length.toString().replace('.', ':')
         data.push(item)
     });
 }
 
 
-export { data, all_play } 
-
+export {
+    data,
+    all_play
+}

@@ -1,11 +1,20 @@
-import { data, all_play } from "./data.js";
+import {
+   data,
+   all_play
+} from "./data.js";
 
 let aside = document.querySelector(".aside");
 let audio = document.querySelector(".audio");
 let el = document.querySelector("audio");
 let header = document.querySelector(".header");
+let right_r = document.querySelector('.right-r')
+let album = document.querySelector('.album')
+let name_tracks = document.querySelector('.name-tracks')
+let name_track = document.querySelector('.name-track')
+let left_l = document.querySelector('.left-l')
+let time = document.querySelector('.time')
 
-setTimeout(() => { }, 100);
+// setTimeout(() => {}, 100);
 
 aside.innerHTML = `<a href="#" class="aside-logo close-logo">
 <img src="./img/logo.png">
@@ -51,7 +60,11 @@ audio.innerHTML = `<figure>
    </div>
    <div class="bottom">
       <div class="first-num hm active">0</div>
-      <div class="long"></div>
+      <div class="long">
+         <div class="count">
+         
+         </div>
+      </div>
       <div class="second-num hm">4:30</div>
    </div>
 </div>
@@ -80,7 +93,10 @@ let treck_audio = document.querySelector(".treck_audio");
 let second_num = document.querySelector(".second-num");
 let search = document.querySelector(".search");
 let search_treck = document.querySelector(".search_treck");
+let count_po = document.querySelector('.count')
 
+right_r.onclick = () => next();
+left_l.onclick = () => prew()
 next_play.onclick = () => next();
 prew_play.onclick = () => prew();
 
@@ -96,7 +112,7 @@ play.onclick = () => {
    else treck_audio.play();
    play.classList.remove("active");
    pause.classList.add("active");
-   // start();
+   listen(data[count])
 };
 
 let count = 0
@@ -134,9 +150,9 @@ search.onkeyup = () => {
       for (let item of data) {
          if (
             item.title
-               .toLowerCase()
-               .trim()
-               .includes(event.target.value.toLowerCase().trim())
+            .toLowerCase()
+            .trim()
+            .includes(event.target.value.toLowerCase().trim())
          ) {
             console.log("create!");
 
@@ -182,9 +198,15 @@ function onChange() {
    });
 }
 
+let procent = 0
+
 let listen = (param) => {
    name_.innerHTML = param.title;
    author.innerHTML = param.author;
+   name_tracks.innerHTML = param.title
+   name_track.innerHTML = param.author
+   time.innerHTML = param.length
+   album.setAttribute('src', `./picture/${param.img}.jpg`)
    treck_audio.setAttribute("src", `./audio/${param.title_org}.mp3`);
    second_num.innerHTML = param.length;
    treck_audio.removeAttribute("muted", "muted");
@@ -192,6 +214,17 @@ let listen = (param) => {
    treck_audio.play();
    play.classList.remove("active");
    pause.classList.add("active");
+
+  
+      setInterval(() => {
+         count_po.style.width = procent + '%'
+          
+          procent++
+  
+          if(procent >= 100) procent = 0
+          if(procent == +param.length.replace(':', '')*10) next()
+      }, +param.length.replace(':', '')*10)
+      
 };
 
 let list_playlist = document.querySelector(".list-playlist");
