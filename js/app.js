@@ -257,8 +257,8 @@ const reload = (track) => {
 
         //Недавно
         let recently_ = () => {
-            for (let id of recently_for_local) {
-                if (item.id == id) {
+            // for (let id of recently_for_local) {
+                if (recently_for_local.includes(item.id)) {
                     let div_main = document.createElement('div')
                     let div_num = document.createElement('div')
                     let div_info = document.createElement('div')
@@ -351,7 +351,7 @@ const reload = (track) => {
                     div_menu.append(p_like, p_add, p_listen)
                     RightListened.prepend(div_main)
                 }
-            }
+            // }
         }
         recently_()
 
@@ -379,6 +379,7 @@ const reload = (track) => {
 }
 reload(data)
 
+let procent = 0
 
 const like = (details) => {
     liked_for_local.push(details)
@@ -390,8 +391,23 @@ const like = (details) => {
 
 let nedavno = (param) => {
     recently_for_local.unshift(param)
+    unique(recently_for_local)
     localStorage.recently = [...new Set(recently_for_local)]
 }
+
+function unique(arr) {
+    let result = [];
+
+    for (let str of arr) {
+        if (!result.includes(str)) {
+            recently_for_local.push(+str);
+        }
+    }
+
+    return result;
+}
+unique(recently_for_local)
+console.log(result);
 
 let listen = (param) => {
     name_.innerHTML = param.title
@@ -401,11 +417,22 @@ let listen = (param) => {
 
     treck_audio.setAttribute('src', `./audio/${param.title_org}.mp3`)
     second_num.innerHTML = param.length
+    console.log(param.length);
     treck_audio.removeAttribute('muted', "muted")
     treck_audio.setAttribute('autoplay', 'autoplay')
     treck_audio.play()
     play.classList.remove('active')
     pause.classList.add('active')
+
+    // setInterval(() => {
+    //     count_po.style.width = procent + '%'
+         
+    //      procent++
+ 
+    //      if(procent >= 100) procent = 0
+    //      if(procent == +param.length.replace(':', '')*10) next()
+    //  }, +param.length.replace(':', '')*10)
+
 }
 
 let btn = document.querySelector('.create')
@@ -417,19 +444,19 @@ let set = document.querySelector('.set')
 
 
 //playlist
-let list_reload_playlist_aside = () => {
-    list_playlist.innerHTML = ''
+// let list_reload_playlist_aside = () => {
+//     list_playlist.innerHTML = ''
 
-    for (let item of all_play) {
-        let p = document.createElement('a')
+//     for (let item of all_play) {
+//         let p = document.createElement('a')
 
-        p.setAttribute('href', "./playlist.html")
-        p.style.color = 'white'
-        p.style.display = 'block'
-        p.innerHTML = item.title
-        list_playlist.append(p)
-    }
-}
+//         p.setAttribute('href', "./playlist.html")
+//         p.style.color = 'white'
+//         p.style.display = 'block'
+//         p.innerHTML = item.title
+//         list_playlist.append(p)
+//     }
+// }
 
 
 
@@ -453,6 +480,7 @@ create.onclick = () => {
 bg.onclick = () => {
     modal.classList.remove('active')
 }
+
 let obj = {}
 
 let form = document.forms.register
@@ -468,15 +496,11 @@ form.onsubmit = () => {
     })
     localStorage.playlist += '$' + JSON.stringify(obj)
 
-    list_reload_playlist_aside()
     reload_playlist()
 }
 
-list_reload_playlist_aside()
-// list_reload_playlist_main()
 
 let p_playList = document.querySelector('.playlistName')
-// console.l    og(p_playList);
 
 let reload_playlist = () => {
     p_playList.innerHTML = ''
