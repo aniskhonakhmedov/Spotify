@@ -19,6 +19,7 @@
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
+
     p {
         &:last-child {
             opacity: 0.6;
@@ -26,25 +27,27 @@
     }
 }
 
-.set{
+.set {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-auto-rows: 500px;
 }
 
-.naviga{
+.naviga {
     width: 100%;
     margin: -15px auto;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 0;
+
     // position: relative;
-    img{
+    img {
         margin: 0px 25px;
         width: 30px;
         filter: invert(100%);
-        &:hover{
+
+        &:hover {
             cursor: pointer;
         }
     }
@@ -69,7 +72,7 @@
     align-items: center;
 }
 
-.count{
+.count {
     border-radius: 10px;
     height: 5px;
     background-color: #155fff;
@@ -81,7 +84,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    img{
+
+    img {
         filter: invert(100%);
     }
 }
@@ -122,10 +126,12 @@
 
 .hg {
     display: none;
-    &:hover{
+
+    &:hover {
         cursor: pointer;
     }
-    &.active{
+
+    &.active {
         display: block;
     }
 }
@@ -160,7 +166,7 @@ audio {
     position: fixed;
     right: 0;
     top: 0;
-    background-color: #002c23;
+    background-color: transparent;
 }
 
 .header .aside-logo {
@@ -206,7 +212,8 @@ audio {
 }
 
 main {
-    margin-top: 120px;
+    // margin-top: 120px;
+    padding-left: 20px;
     width: 100%;
 }
 
@@ -344,6 +351,11 @@ h6 {
     padding: 35px 40px 100px;
     overflow-y: auto;
     z-index: 10;
+
+    &.active {
+        background-color: #191C21;
+        width: 20%;
+    }
 }
 
 .aside-logo {
@@ -416,7 +428,7 @@ h6 {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .header-search {
@@ -467,8 +479,8 @@ h6 {
 
 .info_tracks {
     height: 500px;
-    background: #1e4e11;
-    background: linear-gradient(180deg, #003329, rgba(0, 0, 0, 0) 100%);
+    // background: #1e4e11;
+    background: transparent;
     padding: 80px;
     display: flex;
     justify-content: space-between;
@@ -637,11 +649,6 @@ body {
     background: #fff;
 }
 
-.wrapper {
-    height: 100%;
-    background: #1e4e11;
-    background: linear-gradient(180deg, #003329, rgba(0, 0, 0, 0) 100%);
-}
 
 .switch-button_2:before {
     content: "Premium";
@@ -697,12 +704,12 @@ body {
     z-index: 2;
 }
 
-.switch-button-checkbox:checked + .switch-button-label:before {
+.switch-button-checkbox:checked+.switch-button-label:before {
     transform: translateX(120px);
     transition: transform 0.3s linear;
 }
 
-.switch-button-checkbox + .switch-button-label {
+.switch-button-checkbox+.switch-button-label {
     position: relative;
     padding: 15px 0;
     display: block;
@@ -711,7 +718,7 @@ body {
     pointer-events: none;
 }
 
-.switch-button-checkbox + .switch-button-label:before {
+.switch-button-checkbox+.switch-button-label:before {
     content: "";
     background: #fff;
     height: 100%;
@@ -724,7 +731,7 @@ body {
     transition: transform 0.3s;
 }
 
-.switch-button-checkbox + .switch-button-label .switch-button-label-span {
+.switch-button-checkbox+.switch-button-label .switch-button-label-span {
     position: relative;
     color: #000;
 }
@@ -771,13 +778,26 @@ body {
     margin-top: 100px;
 }
 
+.hidden {
+    display: none;
+}
+
 .wrapper {
     width: 80%;
+    top: 0;
+    height: 100%;
+    padding-top: 120px;
+    // padding-left: 20px;
     float: right;
-    background-color: #002c23;
     position: relative;
     z-index: 1;
     right: 0;
+    background: #003329;
+    background: linear-gradient(to bottom, #003329 0%, #000000 40%);
+
+    &.active {
+        background: linear-gradient(to bottom, #5a271d 0%, #000000 40%);
+    }
 }
 
 .menu.active {
@@ -988,7 +1008,7 @@ form {
     }
 }
 
-.aside.active {
+.aside.active2 {
     transform: translateX(0);
     width: 100%;
 }

@@ -1,7 +1,7 @@
 setTimeout(() => {
 
     let header_name = document.querySelector('.header-user-name')
-    console.log(header_name);
+    let input = document.querySelector('.masn')
     let name_ = []
     class User {
         constructor(firstName, lastName, regDate) {
@@ -39,6 +39,11 @@ setTimeout(() => {
 
     for (let item of name_) {
         console.log(item);
+        input.setAttribute('placeholder', item.firstName + ' ' + item.lastName)
+        localStorage.name = item.firstName
+        localStorage.lastName = item.lastName
         header_name.innerHTML = item.firstName + ' ' + item.lastName
     }
 }, 500);
+
+

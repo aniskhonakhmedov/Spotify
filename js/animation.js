@@ -5,7 +5,7 @@ let close_logo = document.querySelector('.close-logo')
 aside_logo.onclick = () => {
     aside.style.transform = 'translateX(0px);'
     aside_logo.classList.toggle('active')
-    aside.classList.toggle('active')
+    aside.classList.toggle('active2')
 }
 
 document.querySelector('.close').onclick = () => {
@@ -15,5 +15,5 @@ document.querySelector('.close').onclick = () => {
 close_logo.onclick = () => {
     aside.style.transform = 'translateX(-1000px);'
     aside_logo.classList.remove('active')
-    aside.classList.remove('active')
+    aside.classList.remove('active2')
 }
