@@ -170,7 +170,6 @@ for (let item of music) {
 
 
     audio.addEventListener("loadeddata", function () {
-        // audio.duration ? console.log(audio.duration) : console.log('NO FILE!')
         item.length = audio.duration
         item.length = item.length / 60
         item.length = Math.ceil((item.length) * 100) / 100

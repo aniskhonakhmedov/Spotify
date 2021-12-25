@@ -3,13 +3,8 @@ import { data, all_play } from './data.js'
 if (!localStorage.liked) localStorage.liked = []
 localStorage.like += JSON.stringify(all_play)
 if (!localStorage.recently) localStorage.recently = []
-let liked_for_local = localStorage.liked.split(',') || []
-let recently_for_local = localStorage.recently.split(',') || []
 
-// console.log(recently_for_local);
-
-let right_r = document.querySelector('.right-r')
-let left_l = document.querySelector('.left-l')
+//QuerySelectors
 let leftRandom = document.querySelector('.left-random')
 let midLiked = document.querySelector('.mid-liked')
 let name_track = document.querySelector('.name-track')
@@ -18,24 +13,38 @@ let album = document.querySelector('.album')
 let time = document.querySelector('.time')
 let play = document.querySelector('.play')
 let treck_audio = document.querySelector('.treck_audio')
-let list_playlist = document.querySelector('.list-playlist')
+let p_playList = document.querySelector('.playlistName')
 let close = document.querySelector('.close')
+let modal = document.querySelector('.modal')
+let bg = document.querySelector('.bg')
+let create = document.querySelector('.create-close')
 let name_tracks = document.querySelector('.name-tracks')
-
-let name__ = document.querySelector('.name-tracks')
 let name_ = document.querySelector('p[data-name="name"]')
-let author_ = document.querySelector('.name-track')
 let author = document.querySelector('p[data-author="author"]')
 let second_num = document.querySelector('.second-num')
-
 let RightListened = document.querySelector('.right-listened')
 let activeButton = document.querySelector(".menu.active");
 let el = document.querySelector('audio')
 let list = document.querySelector('.tra')
 
+//Forms
+let form = document.forms.register
+
+//Object
+let obj = {}
+
+//Numbers
+let procent = 0
+let num_num = 0
+
+//Array
+let recently_for_local = localStorage.recently.split(',') || []
+let liked_for_local = localStorage.liked.split(',') || []
 let array = []
+let send = []
 let numbers = []
 
+// Ранжомное число
 let randomNumber = () => {
     let random_start = 0; // От какого генерировать
     let random_end = data.length; // До какого генерировать
@@ -63,8 +72,8 @@ let p_liked = document.createElement('p')
 p_liked.innerHTML = 'liked tracks'
 p_liked.classList.add('item')
 
-let num_num = 0
 
+//reload
 const reload = (track) => {
     leftRandom.innerHTML = ''
     leftRandom.append(p_rand)
@@ -148,7 +157,14 @@ const reload = (track) => {
                     document.body.style.overflow = 'hidden'
                 }
 
-
+                p_listen.onclick = () =>{
+                    listen(item)
+                    if (!recently_for_local.includes(item.id)) {
+                        aside_reload()
+                        recently_()
+                    }
+                    nedavno(item.id)
+                }
 
                 div_img.onclick = () => {
                     listen(item)
@@ -172,7 +188,6 @@ const reload = (track) => {
 
         //Понравившиеся треки
         let like_reload = () => {
-            // midLiked.innerHTML = ''
             for (let id of liked_for_local) {
                 if (item.isLiked == true || item.id == id) {
                     let div_main = document.createElement('div')
@@ -254,6 +269,14 @@ const reload = (track) => {
                         document.body.style.overflow = 'hidden'
                     }
 
+                    p_listen.onclick = () =>{
+                        listen(item)
+                        if (!recently_for_local.includes(item.id)) {
+                            aside_reload()
+                            recently_()
+                        }
+                        nedavno(item.id)
+                    }
 
                     div_main.append(div_num, div_info, div_img, div_about)
                     div_img.append(img_author)
@@ -355,6 +378,15 @@ const reload = (track) => {
                     nedavno(item.id)
                 }
 
+                p_listen.onclick = () =>{
+                    listen(item)
+                    if (!recently_for_local.includes(item.id)) {
+                        aside_reload()
+                        recently_()
+                    }
+                    nedavno(item.id)
+                }
+
                 div_main.append(div_num, div_info, div_img, div_about)
                 div_img.append(img_author)
                 div_about.append(div_name, div_time_menu)
@@ -367,6 +399,7 @@ const reload = (track) => {
         }
         recently_()
 
+        //aside reload
         let aside_reload = () => {
             if (recently_for_local.includes(item.id.toString())) {
                 let a = document.createElement('a')
@@ -387,8 +420,8 @@ const reload = (track) => {
 }
 reload(data)
 
-let procent = 0
 
+// like
 const like = (details) => {
     liked_for_local.push(details)
     localStorage.liked = [...new Set(liked_for_local)]
@@ -397,19 +430,14 @@ const like = (details) => {
     find.isLiked = !find.isLiked
 }
 
+//recently
 let nedavno = (param) => {
-    // console.log(recently_for_local, 'recently_for_local');
     recently_for_local.push(param)
-    // window.location.reload();
     localStorage.recently = recently_for_local
-
     let find = data.filter(item => item.id == param)[0]
-    // find.isFavorite = !find.isFavorite
-    console.log(find, 'FIND');
 }
 
-let count_po = document.querySelector('.count')
-
+//Прослушанные треки
 let listen = (param) => {
     name_.innerHTML = param.title;
     author.innerHTML = param.author;
@@ -425,35 +453,35 @@ let listen = (param) => {
     play.classList.remove("active");
     pause.classList.add("active");
 
-
-    setInterval(() => {
-        count_po.style.width = procent + '%'
-        let all_proc = +param.length.replace(':', '') * 60
-        procent++
-
-        if (procent >= 100) procent = 0
-        if (procent == +param.length.replace(':', '') * 60) {next()}
-    }, +param.length.replace(':', '') * 60)
-
-    console.log(+param.length.replace(':', ''));
-
+    status_bar(param)
 };
 
-let btn = document.querySelector('.create')
-let modal = document.querySelector('.modal')
-let bg = document.querySelector('.bg')
-let main = document.querySelector('main')
-let create = document.querySelector('.create-close')
-let set = document.querySelector('.set')
+let count_po = document.querySelector('.count')
 
+let status_bar = (param) => {
+
+    setInterval(() => {
+       count_po.style.width = procent + '%'
+ 
+       procent++
+ 
+       if (procent >= 100) procent = 0
+       if (procent == +param.length.replace(':', '') * 60) next()
+    }, +param.length.replace(':', '') * 60)
+    console.log(+param.length.replace(':', ''));
+ }
+
+//modal view
 create.onclick = () => {
     if (document.querySelector('.input').value === '') {
         create.style.backgroundColor = 'red'
         create.setAttribute('disabled', 'disabled')
+        
         setTimeout(() => {
             create.style.backgroundColor = 'transparent'
             create.removeAttribute('disabled', 'disabled')
         }, 400);
+    
     } else {
         window.location.reload()
         list_reload_playlist_aside()
@@ -467,10 +495,8 @@ bg.onclick = () => {
     modal.classList.remove('active')
 }
 
-let obj = {}
 
-let form = document.forms.register
-
+//form
 form.onsubmit = () => {
     event.preventDefault()
 
@@ -486,17 +512,15 @@ form.onsubmit = () => {
 }
 
 
-let p_playList = document.querySelector('.playlistName')
-
+//reload playlist
 let reload_playlist = () => {
     p_playList.innerHTML = ''
 
     for (let item of all_play) {
-        // console.log(item);
         let p = document.createElement('p')
         let count = document.createElement('p')
         let block_p = document.createElement('div')
-
+        
         count.innerHTML = item.music.length + ' songs'
         p.innerHTML = item.title
         block_p.onclick = () => {
@@ -510,12 +534,10 @@ let reload_playlist = () => {
 }
 reload_playlist()
 
-let send = []
+//take playlist
 let send_idPlayList = (param) => {
     send.push(param)
 }
-
-//take playlist
 
 let takePlaylist = (param) => {
     for (let item of send) {

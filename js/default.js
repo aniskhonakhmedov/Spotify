@@ -1,20 +1,20 @@
 import { data, all_play } from "./data.js";
-localStorage.status = 'Free user'
+
 setTimeout(() => {
    let header_name = document.querySelector('.header-user-name')
    header_name.innerHTML = localStorage.name + ' ' + localStorage.lastName
 }, 300);
 
-let aside = document.querySelector(".aside");
+
+
+
+let search_treck = document.querySelector(".search_treck");
 let audio = document.querySelector(".audio");
-let el = document.querySelector("audio");
 let header = document.querySelector(".header");
-let right_r = document.querySelector('.right-r')
-let album = document.querySelector('.album')
-let name_tracks = document.querySelector('.name-tracks')
-let name_track = document.querySelector('.name-track')
-let left_l = document.querySelector('.left-l')
-let time = document.querySelector('.time')
+let aside = document.querySelector(".aside");
+
+let procent = 0
+let count = 0
 
 aside.innerHTML = `<a href="#" class="aside-logo close-logo">
 <img src="./img/logo.png">
@@ -82,20 +82,6 @@ header.innerHTML = `
    <div class="header-user-status">Free user</div>
 </a>`;
 
-let prew_play = document.querySelector(".prew");
-let next_play = document.querySelector(".next");
-let img_listen = document.querySelectorAll(".hre");
-let pause = document.querySelector(".pause");
-let play = document.querySelector(".play");
-let name_ = document.querySelector('p[data-name="name"]');
-let author = document.querySelector('p[data-author="author"]');
-let treck_audio = document.querySelector(".treck_audio");
-let second_num = document.querySelector(".second-num");
-let search = document.querySelector(".search");
-let search_treck = document.querySelector(".search_treck");
-let count_po = document.querySelector('.count')
-let switch_button_checkbox = document.querySelector('.switch-button-checkbox2')
-
 if (localStorage.status === 'Premium User') {
    document.querySelector('.header-user-status').innerHTML = localStorage.status
    document.querySelector('.wrapper').classList.add('active')
@@ -106,12 +92,32 @@ if (localStorage.status === 'Premium User') {
    document.querySelector('.aside').classList.remove('active')
    document.querySelector('.header-user-status').innerHTML = localStorage.status
 }
+let list_playlist = document.querySelector(".list-playlist");
+let count_po = document.querySelector('.count')
 
+let right_r = document.querySelector('.right-r')
+let album = document.querySelector('.album')
+let name_tracks = document.querySelector('.name-tracks')
+let name_track = document.querySelector('.name-track')
+let left_l = document.querySelector('.left-l')
+let prew_play = document.querySelector(".prew");
+let time = document.querySelector('.time')
+let pause = document.querySelector(".pause");
+let play = document.querySelector(".play");
+let next_play = document.querySelector(".next");
+let name_ = document.querySelector('p[data-name="name"]');
+let author = document.querySelector('p[data-author="author"]');
+let treck_audio = document.querySelector(".treck_audio");
+let second_num = document.querySelector(".second-num");
+let search = document.querySelector(".search");
+
+//Navigation
 right_r.onclick = () => next();
 left_l.onclick = () => prew()
 next_play.onclick = () => next();
 prew_play.onclick = () => prew();
 
+//Pause
 pause.onclick = () => {
    if (treck_audio.paused == false) treck_audio.pause();
    else treck_audio.play();
@@ -119,6 +125,7 @@ pause.onclick = () => {
    pause.classList.remove("active");
 };
 
+//Play
 play.onclick = () => {
    if (treck_audio.paused == false) treck_audio.pause();
    else treck_audio.play();
@@ -127,35 +134,37 @@ play.onclick = () => {
    listen(data[count])
 };
 
-let count = 0
-
+//Next
 let next = () => {
-   console.log("next");
    treck_audio.play();
    play.classList.remove("active");
    pause.classList.add("active");
 
    if (count === data.length) count = 0;
-   treck_audio.src = `./audio/${data[count].title_org}.mp4`;
+   treck_audio.src = `./audio/${data[count].title_org}.mp3`;
    count++;
    status_bar(data[count])
    listen(data[count])
 };
 
+// Prew
 let prew = () => {
    treck_audio.pause();
    play.classList.remove("active");
    pause.classList.add("active");
    
    if (count === 0) count = data.length;
-   treck_audio.src = `./audio/${data[count].title_org}.mp4`;
+
    count--
+   treck_audio.src = `./audio/${data[count].title_org}.mp3`;
       
    status_bar(data[count])
    listen(data[count])
 };
 
+//Search
 search.onkeyup = () => {
+   console.log(event.target.value);
    localStorage.search = event.target.value.trim();
 
    document.querySelector(".search_treck").classList.add("active");
@@ -213,8 +222,7 @@ function onChange() {
    });
 }
 
-let procent = 0
-
+//Listen
 let listen = (param) => {
    name_.innerHTML = param.title;
    author.innerHTML = param.author;
@@ -229,6 +237,8 @@ let listen = (param) => {
    treck_audio.play();
    play.classList.remove("active");
    pause.classList.add("active");
+
+   status_bar(param)
 }
 
 let status_bar = (param) => {
@@ -241,10 +251,9 @@ let status_bar = (param) => {
       if (procent >= 100) procent = 0
       if (procent == +param.length.replace(':', '') * 60) next()
    }, +param.length.replace(':', '') * 60)
-   console.log(+param.length.replace(':', ''));
+
 }
 
-let list_playlist = document.querySelector(".list-playlist");
 
 let list_reload_playlist_aside = () => {
    list_playlist.innerHTML = "";
@@ -257,7 +266,3 @@ let list_reload_playlist_aside = () => {
 };
 
 list_reload_playlist_aside();
-
-let list_reload_recently_aside = () => {
-
-}

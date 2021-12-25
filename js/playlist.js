@@ -3,13 +3,14 @@ import { data, all_play } from './data.js'
 let btn = document.querySelector('.create')
 let modal = document.querySelector('.modal')
 let bg = document.querySelector('.bg')
-let main = document.querySelector('main')
 let create = document.querySelector('.create-close')
 let list_playlist = document.querySelector('.list-playlist')
 let set = document.querySelector('.set')
+let obj = {}
 
+let form = document.forms.register
 
-
+//List reload aside playlist
 let list_reload_playlist_aside = () => {
     list_playlist.innerHTML = ''
 
@@ -21,18 +22,18 @@ let list_reload_playlist_aside = () => {
 }
 
 
+//List reload main playlist
 let list_reload_playlist_main = () => {
     set.innerHTML = ''
     
-    // console.log(all_play);
     for(let item of all_play){
-        // console.log(JSON.parse(item));
         let p = document.createElement('p')
         p.innerHTML = item.title
         set.append(p)
     }
 }
 
+//Modal view
 btn.onclick = () => {
     modal.classList.add('active')
     document.body.style.overflow = 'hidden'
@@ -58,10 +59,8 @@ create.onclick = () => {
 bg.onclick = () => {
     modal.classList.remove('active')
 }
-let obj = {}
 
-let form = document.forms.register
-
+//Form
 form.onsubmit = () => {
     event.preventDefault()
 
@@ -81,5 +80,4 @@ list_reload_playlist_aside()
 list_reload_playlist_main()
 
 
-//Send id in playlist
 
